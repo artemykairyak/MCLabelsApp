@@ -1,54 +1,54 @@
-import React, {useEffect, useState} from 'react';
-import {connect} from "react-redux";
-import {addManuallyRelease, clearManuallyMCArray} from "../../redux/reducers/manuallyReducer";
-import {parseTracklist} from "../../functions";
-import {setFailedSearch} from "../../redux/reducers/twoAlbumsReducer";
+import React, {useEffect, useState} from 'react'
+import {connect} from 'react-redux'
+import {addManuallyRelease, clearManuallyMCArray} from '../../redux/reducers/manuallyReducer'
+import {parseTracklist} from '../../functions'
+import {setFailedSearch} from '../../redux/reducers/twoAlbumsReducer'
 
 const ManuallyInputs = ({print, addManuallyRelease, clearManuallyMCArray, manuallyMCArray, failedSearch, setFailedSearch}) => {
-    const [artist1, setArtist1] = useState('');
-    const [artist2, setArtist2] = useState('');
-    const [album1, setAlbum1] = useState('');
-    const [album2, setAlbum2] = useState('');
-    const [tracks1, setTracks1] = useState('');
-    const [tracks2, setTracks2] = useState('');
+    const [artist1, setArtist1] = useState('')
+    const [artist2, setArtist2] = useState('')
+    const [album1, setAlbum1] = useState('')
+    const [album2, setAlbum2] = useState('')
+    const [tracks1, setTracks1] = useState('')
+    const [tracks2, setTracks2] = useState('')
 
     useEffect(() => {
         if (failedSearch) {
             if (failedSearch.firstRelease && !failedSearch.secondRelease) {
-                let {artist, title, year, tracks} = failedSearch.firstRelease;
-                setArtist1(artist);
-                setAlbum1(`${title} (${year})`);
-                setTracks1(tracks.join('\n'));
+                let {artist, title, year, tracks} = failedSearch.firstRelease
+                setArtist1(artist)
+                setAlbum1(`${title} (${year})`)
+                setTracks1(tracks.join('\n'))
             } else if (!failedSearch.firstRelease && failedSearch.secondRelease) {
-                let {artist, title, year, tracks} = failedSearch.secondRelease;
-                setArtist2(artist);
-                setAlbum2(`${title} (${year})`);
-                setTracks2(tracks.join('\n'));
+                let {artist, title, year, tracks} = failedSearch.secondRelease
+                setArtist2(artist)
+                setAlbum2(`${title} (${year})`)
+                setTracks2(tracks.join('\n'))
             }
         }
 
-        setFailedSearch(null);
+        setFailedSearch(null)
     }, [])
 
     const setReleases = (e) => {
-        e.preventDefault();
-        let parsedTracks1 = parseTracklist(tracks1);
-        let parsedTracks2 = parseTracklist(tracks2);
-        addManuallyRelease(artist1, album1, parsedTracks1, artist2, album2, parsedTracks2);
-        clearInputs();
+        e.preventDefault()
+        let parsedTracks1 = parseTracklist(tracks1)
+        let parsedTracks2 = parseTracklist(tracks2)
+        addManuallyRelease(artist1, album1, parsedTracks1, artist2, album2, parsedTracks2)
+        clearInputs()
     }
 
     const clearInputs = () => {
-        setArtist1('');
-        setArtist2('');
-        setAlbum1('');
-        setAlbum2('');
-        setTracks1('');
-        setTracks2('');
+        setArtist1('')
+        setArtist2('')
+        setAlbum1('')
+        setAlbum2('')
+        setTracks1('')
+        setTracks2('')
     }
 
     return (
-        <form onSubmit={() => !(artist1 && album1 && album2 && artist2) && setReleases()}
+        <form onSubmit={() => !(artist1 && artist2) && setReleases()}
               className="search-panel search-panel_manually">
             <div className="search-col">
                 <div className="search__side">
@@ -76,7 +76,7 @@ const ManuallyInputs = ({print, addManuallyRelease, clearManuallyMCArray, manual
             </div>
 
             <div className="search-buttons">
-                <button type="submit" disabled={!(artist1 && album1 && album2 && artist2)} className="btn searchBtn"
+                <button type="submit" disabled={!(artist1 && artist2)} className="btn searchBtn"
                         onClick={setReleases}>Добавить
                 </button>
                 <button type="button" disabled={!(!!manuallyMCArray.length)} onClick={print}
@@ -87,10 +87,10 @@ const ManuallyInputs = ({print, addManuallyRelease, clearManuallyMCArray, manual
                 </button>
             </div>
         </form>
-    );
-};
+    )
+}
 
 export default connect(state => ({
     manuallyMCArray: state.manually.MCArray,
     failedSearch: state.twoAlbums.failedSearch
-}), {addManuallyRelease, clearManuallyMCArray, setFailedSearch})(ManuallyInputs);
+}), {addManuallyRelease, clearManuallyMCArray, setFailedSearch})(ManuallyInputs)

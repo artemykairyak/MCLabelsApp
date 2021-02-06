@@ -1,55 +1,55 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
 
 const MC = ({printing, release, deleteOneAlbumMC}) => {
     const [sideA, setSideA] = useState([])
     const [sideB, setSideB] = useState([])
-    const [isOverflow, setIsOverflow] = useState(false);
+    const [isOverflow, setIsOverflow] = useState(false)
 
     useEffect(() => {
         if (release) {
-            setSideA(release.tracks.slice(0, Math.round(release.tracks.length / 2)));
-            setSideB(release.tracks.slice(Math.round(release.tracks.length / 2)));
+            setSideA(release.tracks.slice(0, Math.round(release.tracks.length / 2)))
+            setSideB(release.tracks.slice(Math.round(release.tracks.length / 2)))
         }
-    }, [release]);
+    }, [release])
 
     const changeSide = (index, side) => {
-        let newSideA, newSideB;
+        let newSideA, newSideB
         if (side === 'A') {
-            newSideB = [sideA[index], ...sideB];
-            newSideA = sideA.filter((item, i) => i !== index);
+            newSideB = [sideA[index], ...sideB]
+            newSideA = sideA.filter((item, i) => i !== index)
         }
 
         if (side === 'B') {
-            newSideA = [...sideA, sideB[index]];
-            newSideB = sideB.filter((item, i) => i !== index);
+            newSideA = [...sideA, sideB[index]]
+            newSideB = sideB.filter((item, i) => i !== index)
         }
 
-        setSideA(newSideA);
-        setSideB(newSideB);
+        setSideA(newSideA)
+        setSideB(newSideB)
     }
 
     const deleteTrack = (index, side) => {
         if (side === 'A') {
-            setSideA(sideA.filter((item, i) => i !== index));
+            setSideA(sideA.filter((item, i) => i !== index))
         }
 
         if (side === 'B') {
-            setSideB(sideB.filter((item, i) => i !== index));
+            setSideB(sideB.filter((item, i) => i !== index))
         }
     }
 
     useEffect(() => {
-        setIsOverflow(isOverflown());
+        setIsOverflow(isOverflown())
     }, [sideA, sideB])
 
     const isOverflown = (type = 'back') => {
-        let height = 0;
-        let tracks = document.querySelectorAll(`.mc_${release.id} .mc__track`);
-        let sides = document.querySelectorAll(`.mc_${release.id} .mc__side`);
-        tracks.forEach(item => height += item.offsetHeight);
-        sides.forEach(item => height += item.offsetHeight);
+        let height = 0
+        let tracks = document.querySelectorAll(`.mc_${release.id} .mc__track`)
+        let sides = document.querySelectorAll(`.mc_${release.id} .mc__side`)
+        tracks.forEach(item => height += item.offsetHeight)
+        sides.forEach(item => height += item.offsetHeight)
 
-        return height > (document.querySelector(`.mc_${release.id} .mc__${type}`).clientHeight);
+        return height > (document.querySelector(`.mc_${release.id} .mc__${type}`).clientHeight)
     }
     return (
         <div className={`mc ${printing ? 'mc_print' : ''} mc_${release.id}`}>
@@ -95,6 +95,6 @@ const MC = ({printing, release, deleteOneAlbumMC}) => {
                 })}
             </div>}
         </div>)
-};
+}
 
-export default MC;
+export default MC

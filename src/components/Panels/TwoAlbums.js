@@ -1,6 +1,6 @@
-import React from 'react';
-import SearchPanel from "./SearchPanel";
-import ResultPanel from "./ResultPanel";
+import React from 'react'
+import SearchPanel from './SearchPanel'
+import ResultPanel from './ResultPanel'
 
 const TwoAlbums = ({printing, print, mode}) => {
     return (
@@ -8,7 +8,7 @@ const TwoAlbums = ({printing, print, mode}) => {
             {!printing && <SearchPanel print={print} mode={mode}/>}
             <ResultPanel printing={printing} mode={mode}/>
         </div>
-    );
-};
+    )
+}
 
-export default TwoAlbums;
+export default TwoAlbums

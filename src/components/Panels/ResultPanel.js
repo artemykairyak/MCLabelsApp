@@ -1,11 +1,11 @@
-import React from 'react';
-import './Panels.css';
-import MC from "./MC";
-import {connect} from "react-redux";
-import TwoAlbumsMC from "./TwoAlbumsMC";
-import {deleteOneAlbumMC} from "../../redux/reducers/oneAlbumReducer";
-import {deleteTwoAlbumsMC} from "../../redux/reducers/twoAlbumsReducer";
-import {deleteManuallyMC} from "../../redux/reducers/manuallyReducer";
+import React from 'react'
+import './Panels.css'
+import MC from './MC'
+import {connect} from 'react-redux'
+import TwoAlbumsMC from './TwoAlbumsMC'
+import {deleteOneAlbumMC} from '../../redux/reducers/oneAlbumReducer'
+import {deleteTwoAlbumsMC} from '../../redux/reducers/twoAlbumsReducer'
+import {deleteManuallyMC} from '../../redux/reducers/manuallyReducer'
 
 const ResultPanel = ({
                          mode, printing, isOverflow, setIsOverflow, oneAlbumMCArray, twoAlbumsMCArray, manuallyArray,
@@ -21,7 +21,7 @@ const ResultPanel = ({
                            mode={mode}
                            deleteOneAlbumMC={deleteOneAlbumMC}/>
             })}
-        </div>;
+        </div>
     }
 
     if (mode === 'two') {
@@ -49,10 +49,10 @@ const ResultPanel = ({
             })}
         </div>
     }
-};
+}
 
 export default connect(state => ({
     oneAlbumMCArray: state.oneAlbum.MCArray,
     twoAlbumsMCArray: state.twoAlbums.MCArray,
     manuallyArray: state.manually.MCArray
-}), {deleteOneAlbumMC, deleteTwoAlbumsMC, deleteManuallyMC})(ResultPanel);
+}), {deleteOneAlbumMC, deleteTwoAlbumsMC, deleteManuallyMC})(ResultPanel)

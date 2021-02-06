@@ -1,8 +1,8 @@
-const SET_ERROR_TEXT = 'SET_ERROR_TEXT';
+const SET_ERROR_TEXT = 'SET_ERROR_TEXT'
 
 const initialState = {
     errorText: ''
-};
+}
 
 export function appReducer(state = initialState, action) {
     switch (action.type) {
@@ -12,8 +12,8 @@ export function appReducer(state = initialState, action) {
                 errorText: action.errorText
             }
         default:
-            return state;
+            return state
     }
 }
 
-export const setErrorText = (errorText) => ({type: SET_ERROR_TEXT, errorText});
+export const setErrorText = (errorText) => ({type: SET_ERROR_TEXT, errorText})

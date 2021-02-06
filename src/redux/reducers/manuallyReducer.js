@@ -1,10 +1,10 @@
-const ADD_MANUALLY_RELEASE = 'ADD_FIRST_MANUALLY_RELEASE';
-const CLEAR_TWO_ALBUMS_MCARRAY = 'CLEAR_TWO_ALBUMS_MCARRAY';
-const DELETE_TWO_ALBUMS_MC = 'DELETE_TWO_ALBUMS_MC';
+const ADD_MANUALLY_RELEASE = 'ADD_FIRST_MANUALLY_RELEASE'
+const CLEAR_TWO_ALBUMS_MCARRAY = 'CLEAR_TWO_ALBUMS_MCARRAY'
+const DELETE_TWO_ALBUMS_MC = 'DELETE_TWO_ALBUMS_MC'
 
 export const initialState = {
     MCArray: [],
-};
+}
 
 export function manuallyReducer(state = initialState, action) {
     switch (action.type) {
@@ -29,7 +29,7 @@ export function manuallyReducer(state = initialState, action) {
                 MCArray: state.MCArray.filter(item => item.id !== action.id),
             }
         default:
-            return state;
+            return state
     }
 }
 
@@ -37,8 +37,8 @@ export const addManuallyRelease = (artist1, album1, tracks1, artist2, album2, tr
     type: ADD_MANUALLY_RELEASE,
     artist1, album1, tracks1,
     artist2, album2, tracks2
-});
+})
 
-export const clearManuallyMCArray = () => ({type: CLEAR_TWO_ALBUMS_MCARRAY});
-export const deleteManuallyMC = (id) => ({type: DELETE_TWO_ALBUMS_MC, id});
+export const clearManuallyMCArray = () => ({type: CLEAR_TWO_ALBUMS_MCARRAY})
+export const deleteManuallyMC = (id) => ({type: DELETE_TWO_ALBUMS_MC, id})
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
 
 const TwoAlbumsMC = ({printing, releases, deleteTwoAlbumsMC, mode, deleteManuallyMC}) => {
     const [sideA, setSideA] = useState(null)
@@ -7,33 +7,33 @@ const TwoAlbumsMC = ({printing, releases, deleteTwoAlbumsMC, mode, deleteManuall
     useEffect(() => {
         if (releases) {
             setSideA(releases.sideA)
-            setSideB(releases.sideB);
+            setSideB(releases.sideB)
         }
-    }, [releases]);
+    }, [releases])
 
     const changeSide = (index, side) => {
-        let newSideA, newSideB;
+        let newSideA, newSideB
         if (side === 'A') {
-            newSideB = {...sideB, tracks: [sideA.tracks[index], ...sideB.tracks]};
-            newSideA = {...sideA, tracks: sideA.tracks.filter((item, i) => i !== index)};
+            newSideB = {...sideB, tracks: [sideA.tracks[index], ...sideB.tracks]}
+            newSideA = {...sideA, tracks: sideA.tracks.filter((item, i) => i !== index)}
         }
 
         if (side === 'B') {
-            newSideA = {...sideA, tracks: [...sideA.tracks, sideB.tracks[index]]};
-            newSideB = {...sideB, tracks: sideB.tracks.filter((item, i) => i !== index)};
+            newSideA = {...sideA, tracks: [...sideA.tracks, sideB.tracks[index]]}
+            newSideB = {...sideB, tracks: sideB.tracks.filter((item, i) => i !== index)}
         }
 
-        setSideA(newSideA);
-        setSideB(newSideB);
+        setSideA(newSideA)
+        setSideB(newSideB)
     }
 
     const deleteTrack = (index, side) => {
         if (side === 'A') {
-            setSideA({...sideA, tracks: sideA.tracks.filter((item, i) => i !== index)});
+            setSideA({...sideA, tracks: sideA.tracks.filter((item, i) => i !== index)})
         }
 
         if (side === 'B') {
-            setSideB({...sideB, tracks: sideB.tracks.filter((item, i) => i !== index)});
+            setSideB({...sideB, tracks: sideB.tracks.filter((item, i) => i !== index)})
         }
     }
 
@@ -44,10 +44,10 @@ const TwoAlbumsMC = ({printing, releases, deleteTwoAlbumsMC, mode, deleteManuall
             <div className="mc__front"/>
             <div className="mc__edge">
                    <span className="mc__title">
-                       {!!sideA && `${sideA.artist} — ${sideA.title} ${!!sideA.year ? `(${sideA.year})` : ''}`}
+                       {!!sideA && `${sideA.artist} ${!!sideA.title ? `— ${sideA.title}` : ''} ${!!sideA.year ? `(${sideA.year})` : ''}`}
                    </span>
                 <span className="mc__title">
-                    {!!sideB && `${sideB.artist} — ${sideB.title} ${!!sideB.year ? `(${sideB.year})` : ''}`}
+                    {!!sideB && `${sideB.artist} ${!!sideB.title ? `— ${sideB.title}` : ''} ${!!sideB.year ? `(${sideB.year})` : ''}`}
                    </span>
             </div>
             <div className="mc__back">
@@ -71,6 +71,6 @@ const TwoAlbumsMC = ({printing, releases, deleteTwoAlbumsMC, mode, deleteManuall
                 })}
             </div>
         </div>)
-};
+}
 
-export default TwoAlbumsMC;
+export default TwoAlbumsMC

@@ -1,12 +1,12 @@
-const ADD_TWO_ALBUMS_RELEASE = 'ADD_TWO_ALBUMS_RELEASE';
-const CLEAR_TWO_ALBUMS_MCARRAY = 'CLEAR_TWO_ALBUMS_MCARRAY';
-const DELETE_TWO_ALBUMS_MC = 'DELETE_TWO_ALBUMS_MC';
-const SET_FAILED_SEARCH = 'SET_FAILED_SEARCH';
+const ADD_TWO_ALBUMS_RELEASE = 'ADD_TWO_ALBUMS_RELEASE'
+const CLEAR_TWO_ALBUMS_MCARRAY = 'CLEAR_TWO_ALBUMS_MCARRAY'
+const DELETE_TWO_ALBUMS_MC = 'DELETE_TWO_ALBUMS_MC'
+const SET_FAILED_SEARCH = 'SET_FAILED_SEARCH'
 
 export const initialState = {
     MCArray: [],
     failedSearch: {firstRelease: false, secondRelease: false}
-};
+}
 
 export function twoAlbumsReducer(state = initialState, action) {
     switch (action.type) {
@@ -36,11 +36,11 @@ export function twoAlbumsReducer(state = initialState, action) {
                 failedSearch: action.searchObj
             }
         default:
-            return state;
+            return state
     }
 }
 
-export const addTwoAlbumsRelease = (release1, release2) => ({type: ADD_TWO_ALBUMS_RELEASE, release1, release2});
-export const clearTwoAlbumsMCArray = () => ({type: CLEAR_TWO_ALBUMS_MCARRAY});
-export const deleteTwoAlbumsMC = (id) => ({type: DELETE_TWO_ALBUMS_MC, id});
-export const setFailedSearch = (searchObj) => ({type: SET_FAILED_SEARCH, searchObj});
+export const addTwoAlbumsRelease = (release1, release2) => ({type: ADD_TWO_ALBUMS_RELEASE, release1, release2})
+export const clearTwoAlbumsMCArray = () => ({type: CLEAR_TWO_ALBUMS_MCARRAY})
+export const deleteTwoAlbumsMC = (id) => ({type: DELETE_TWO_ALBUMS_MC, id})
+export const setFailedSearch = (searchObj) => ({type: SET_FAILED_SEARCH, searchObj})

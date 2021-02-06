@@ -1,7 +1,7 @@
-import React from 'react';
-import {errorIcon} from "../../constants";
-import {connect} from "react-redux";
-import {setErrorText} from "../../redux/reducers/appReducer";
+import React from 'react'
+import {errorIcon} from '../../constants'
+import {connect} from 'react-redux'
+import {setErrorText} from '../../redux/reducers/appReducer'
 
 const Popup = ({type, text, setErrorText, onClick}) => {
     return (
@@ -12,14 +12,14 @@ const Popup = ({type, text, setErrorText, onClick}) => {
                 <div className="popup__buttons">
                     <button className="btn popup__closeBtn" onClick={() => setErrorText('')}>Закрыть</button>
                     <button className="btn popup__manuallyBtn" onClick={() => {
-                        onClick();
+                        onClick()
                         setErrorText('')
                     }}>В ручной режим
                     </button>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default connect(null, {setErrorText})(Popup);
+export default connect(null, {setErrorText})(Popup)

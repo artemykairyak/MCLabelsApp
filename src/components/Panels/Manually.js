@@ -1,6 +1,6 @@
-import React from 'react';
-import ResultPanel from "./ResultPanel";
-import ManuallyInputs from "./ManuallyInputs";
+import React from 'react'
+import ResultPanel from './ResultPanel'
+import ManuallyInputs from './ManuallyInputs'
 
 const Manually = ({printing, print, mode}) => {
     return (
@@ -8,7 +8,7 @@ const Manually = ({printing, print, mode}) => {
             {!printing && <ManuallyInputs print={print} mode={mode}/>}
             <ResultPanel printing={printing} mode={mode}/>
         </div>
-    );
-};
+    )
+}
 
-export default Manually;
+export default Manually

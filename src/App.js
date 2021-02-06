@@ -1,24 +1,20 @@
-import './App.css';
-import React, {useEffect, useState} from "react";
-import {cdIcon, handIcon} from "./constants";
-import OneAlbum from "./components/Panels/OneAlbum";
-import {connect} from "react-redux";
-import Popup from "./components/Common/Popup";
-import TwoAlbums from "./components/Panels/TwoAlbums";
-import Manually from "./components/Panels/Manually";
+import './App.css'
+import React, {useState} from 'react'
+import {cdIcon, handIcon} from './constants'
+import OneAlbum from './components/Panels/OneAlbum'
+import {connect} from 'react-redux'
+import Popup from './components/Common/Popup'
+import TwoAlbums from './components/Panels/TwoAlbums'
+import Manually from './components/Panels/Manually'
 
 const App = ({errorText, state}) => {
-    let [printing, setPrinting] = useState(false);
-    const [mode, setMode] = useState('');
-
-    useEffect(() => {
-        console.log(state)
-    }, [state]);
+    let [printing, setPrinting] = useState(false)
+    const [mode, setMode] = useState('')
 
     const print = async () => {
-        await setPrinting(true);
-        await window.print();
-        await setPrinting(false);
+        await setPrinting(true)
+        await window.print()
+        await setPrinting(false)
     }
 
     return (
@@ -50,7 +46,7 @@ const App = ({errorText, state}) => {
             {!!(mode && !printing) && <button className="btn backBtn" onClick={() => setMode('')}>Назад</button>}
             {errorText && <Popup type="error" text={errorText} onClick={() => setMode('manually')}/>}
         </>
-    );
+    )
 }
 
-export default connect(state => ({state: state, errorText: state.app.errorText}), {})(App);
+export default connect(state => ({state: state, errorText: state.app.errorText}), {})(App)
